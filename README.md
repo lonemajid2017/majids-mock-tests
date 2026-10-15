@@ -1,1 +1,0 @@
-# majids-mock-tests
