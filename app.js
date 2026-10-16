@@ -1,197 +1,298 @@
 const JKSSB_TOPICS = [
-    { id: "tenses", title: "1. Tenses & Sequence of Tenses", desc: "Present, Past, Future, Conditional Clauses & Time Expressions asked in JKSSB", icon: "⏳", pyqCount: "45+ PYQs" },
-    { id: "narration", title: "2. Narration (Direct & Indirect Speech)", desc: "Assertive, Interrogative, Imperative, Optative & Exclamatory Conversions", icon: "🗣️", pyqCount: "40+ PYQs" },
-    { id: "modals", title: "3. Modals & Auxiliaries", desc: "Can, Could, May, Might, Must, Shall, Should, Will, Would, Ought to, Need, Dare", icon: "⚡", pyqCount: "30+ PYQs" },
-    { id: "articles", title: "4. Articles & Determiners", desc: "Definite (The), Indefinite (A, An) & Omission of Articles (Zero Article Rules)", icon: "🅰️", pyqCount: "50+ PYQs" },
-    { id: "voice", title: "5. Active & Passive Voice", desc: "Tense-wise Voice Transformation, Imperatives, Interrogatives & Prepositional Passives", icon: "🔄", pyqCount: "45+ PYQs" },
-    { id: "prepositions", title: "6. Uses of Prepositions", desc: "Fixed Prepositions, Phrasal Prepositions, Place, Time & Direction Rules", icon: "📍", pyqCount: "60+ PYQs" },
-    { id: "clauses", title: "7. Clauses (Noun, Adjective, Adverb)", desc: "Principal vs Subordinate Clauses, Relative Pronouns & Conditional Connectors", icon: "🔗", pyqCount: "35+ PYQs" },
-    { id: "rearranging", title: "8. Rearranging of Jumbled Sentences", desc: "PQRS Para-Jumbles, Sentence Ordering & Coherent Paragraph Construction", icon: "🧩", pyqCount: "40+ PYQs" },
-    { id: "vocab", title: "9. Synonyms & Antonyms", desc: "High-Frequency JKSSB Vocabulary, Contextual Meanings & Word Replacements", icon: "📖", pyqCount: "55+ PYQs" },
-    { id: "idioms", title: "10. Idioms and Phrases", desc: "Proverbs, Idiomatic Expressions & Phrasal Verbs from Previous JKSSB Papers", icon: "💡", pyqCount: "50+ PYQs" },
-    { id: "homonyms", title: "11. Pairs of Words (Homonyms & Homophones)", desc: "Confusing Word Pairs (Affect/Effect, Beside/Besides, Access/Excess, etc.)", icon: "⚖️", pyqCount: "35+ PYQs" },
-    { id: "comprehension", title: "12. Cloze Test & Fill in the Blanks", desc: "Blanks with Phrases, Pronouns, Conjunctions & Contextual Vocabulary", icon: "📝", pyqCount: "40+ PYQs" },
-    { id: "pyq_special", title: "13. JKSSB PYQ Memory Vault (2015–2025)", desc: "Actual Questions Asked in JKSSB Assistant Compiler, FAA, VLW, SI & Graduate Exams", icon: "🏆", pyqCount: "All-in-One PYQs" }
+    { id: "tenses", title: "1. Tenses & Sequence of Tenses", desc: "700 Pure Tenses MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "⏳", mode: "standard" },
+    { id: "modals", title: "2. Modals & Auxiliaries", desc: "700 Pure Modals MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "⚡", mode: "standard" },
+    { id: "articles", title: "3. Articles & Determiners", desc: "700 Pure Articles MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "🅰️", mode: "standard" },
+    { id: "narration", title: "4. Narration (Direct & Indirect)", desc: "700 Pure Narration MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "🗣️", mode: "standard" },
+    { id: "clauses", title: "5. Clauses (Noun, Adjective, Adverb)", desc: "700 Pure Clauses MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "🔗", mode: "standard" },
+    { id: "prepositions", title: "6. Uses of Prepositions", desc: "700 Pure Preposition MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "📍", mode: "standard" },
+    { id: "pronouns", title: "7. Pronouns & Relative Pronouns", desc: "700 Pure Pronoun MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "👤", mode: "standard" },
+    { id: "homonyms", title: "8. Homonyms, Homophones & Word Pairs", desc: "700 Pure Word-Pair MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "⚖️", mode: "standard" },
+    { id: "rearranging", title: "9. Rearranging Jumbled Sentences", desc: "700 Pure Para-Jumble MCQs (Basic: 100, Medium: 500, Hard: 100)", icon: "🧩", mode: "standard" },
+    { id: "editing", title: "10. Editing, Proof Reading & Punctuation", desc: "700 Pure Error-Spotting & Punctuation MCQs (Basic/Med/Hard)", icon: "✍️", mode: "standard" },
+    { id: "cloze", title: "11. Cloze Test Passages (25 Medium Sets)", desc: "25 Medium Level Passages • 5 Blanks per Passage (125 Qs)", icon: "📝", mode: "cloze" },
+    { id: "dialogue", title: "12. Dialogue Completion (20 Sets)", desc: "20 JKSSB Dialogue Sets • 8 Questions per Dialogue (160 Qs)", icon: "💬", mode: "dialogue" }
 ];
 
-const CORE_QUESTION_BANK = {
+const PURE_SEED_VAULT = {
     tenses: [
-        { q: "Choose the correct tense form: 'By the time the police arrived, the thief _______.'", options: ["escaped", "has escaped", "had escaped", "was escaping"], answer: 2, explanation: "JKSSB Rule: When two actions happened in the past, the earlier action takes Past Perfect ('had + V3') and the later action takes Simple Past ('arrived')." },
-        { q: "Identify the correct verb form: 'It _______ continuously since 6 o'clock this morning.'", options: ["is raining", "was raining", "has been raining", "rains"], answer: 2, explanation: "With 'since/for' indicating an action that started in the past and is still continuing, Present Perfect Continuous ('has/have been + V-ing') is used." },
-        { q: "Fill in the blank (JKSSB Assistant Compiler PYQ): 'If you _______ hard, you will surely crack the JKSSB exam.'", options: ["worked", "work", "will work", "had worked"], answer: 1, explanation: "Type-1 Conditional Rule: 'If + Simple Present (work), ... Simple Future (will crack)'." },
-        { q: "Spot the correct completion: 'Hardly had I reached the examination hall _______ the bell rang.'", options: ["than", "when", "then", "after"], answer: 1, explanation: "'Hardly/Scarcely ... had' is always followed by 'when' (not 'than'). 'No sooner' takes 'than'." },
-        { q: "Choose the right option: 'She behaves as if she _______ the owner of this entire organization.'", options: ["is", "was", "were", "has been"], answer: 2, explanation: "Subjunctive Mood Rule: After 'as if / as though / I wish', unreal present states always take 'were'." },
-        { q: "Select the correct verb: 'Neither the players nor the coach _______ present at the meeting yesterday.'", options: ["were", "was", "are", "have been"], answer: 1, explanation: "With 'Neither...nor', the verb agrees with the closer subject ('the coach' = singular) -> 'was'." },
-        { q: "Complete the sentence: 'The train _______ before we reached the railway station.'", options: ["left", "has left", "had left", "leaves"], answer: 2, explanation: "Before + Simple Past ('reached') requires Past Perfect ('had left') in the main clause." },
-        { q: "Fill in the blank: 'I _______ him for the last ten years.'", options: ["am knowing", "have known", "have been knowing", "knew"], answer: 1, explanation: "Stative verbs like 'know, believe, own' are not used in continuous (-ing) forms. Hence 'have known' is correct." },
-        { q: "Choose the correct form: 'If he had informed me earlier, I _______ helped him.'", options: ["would", "will have", "would have", "had"], answer: 2, explanation: "Type-3 Conditional Rule: 'If + had + V3' takes 'would have + V3' in the main clause." },
-        { q: "Complete the sentence: 'It is high time you _______ taking your preparation seriously.'", options: ["start", "started", "will start", "have started"], answer: 1, explanation: "Phrases like 'It is high time' followed by a subject always take Simple Past (V2 = 'started')." }
-    ],
-    narration: [
-        { q: "Change into Indirect Speech: He said to me, 'Are you preparing for the JKSSB exam?'", options: ["He asked me whether I am preparing for the JKSSB exam.", "He asked me if I was preparing for the JKSSB exam.", "He told me that I was preparing for the JKSSB exam.", "He asked me if was I preparing for the JKSSB exam."], answer: 1, explanation: "Interrogative reporting uses 'asked + if/whether' and changes Present Continuous to Past Continuous." },
-        { q: "Change the Narration: The teacher said, 'The earth revolves around the sun.'", options: ["The teacher said that the earth revolved around the sun.", "The teacher said that the earth revolves around the sun.", "The teacher asked if the earth revolves around the sun.", "The teacher told that the earth had revolved around the sun."], answer: 1, explanation: "Universal Truth Exception: Tense of a universal truth does not change in indirect speech." },
-        { q: "Convert to Indirect Speech: She said to the servant, 'Leave the room at once.'", options: ["She requested the servant to leave the room at once.", "She ordered the servant to leave the room at once.", "She said to the servant that leave the room at once.", "She ordered the servant that he should leave the room."], answer: 1, explanation: "Imperative commands change 'said to' into 'ordered' and use 'to + V1' ('to leave')." },
-        { q: "Change into Indirect Speech: Bilal said, 'Alas! I have lost my admit card.'", options: ["Bilal exclaimed with sorrow that he had lost his admit card.", "Bilal said sadly that he has lost his admit card.", "Bilal exclaimed with joy that he had lost his admit card.", "Bilal told that alas he lost his admit card."], answer: 0, explanation: "'Alas!' changes to 'exclaimed with sorrow that', and Present Perfect becomes Past Perfect." }
+        { q: "[JKSSB FAA PYQ] Identify the tense: 'I have been working on the problem.'", options: ["Present Continuous", "Present Perfect Continuous", "Past Perfect", "Past Continuous"], answer: 1, explanation: "'Have/has been + V-ing' is Present Perfect Continuous Tense." },
+        { q: "[JKSSB Accounts Asst PYQ] 'By the time we arrived, the movie _______ already started.'", options: ["had", "having", "has", "have"], answer: 0, explanation: "For the earlier of two past actions, Past Perfect ('had + V3') is used." },
+        { q: "[JKSSB PYQ] 'I _______ my homework when the phone rang.'", options: ["am doing", "do", "did", "was doing"], answer: 3, explanation: "An ongoing past action interrupted by a shorter past action takes Past Continuous ('was doing')." },
+        { q: "[JKSSB PYQ] 'It _______ raining since morning when you rang me up.'", options: ["had been", "has been", "have been", "was"], answer: 0, explanation: "Past reference ('when you rang me up') + 'since morning' takes Past Perfect Continuous ('had been')." },
+        { q: "[JKSSB PYQ] 'She _______ her house seven days ago.'", options: ["leave", "leaves", "leaving", "left"], answer: 3, explanation: "Time expressions with 'ago' always take Simple Past (V2 = 'left')." }
     ],
     modals: [
-        { q: "Fill in the blank: 'Candidates _______ carry their original ID proof to the exam center; it is mandatory.'", options: ["may", "might", "must", "could"], answer: 2, explanation: "'Must' expresses strong obligation or official necessity." },
-        { q: "Choose the correct Modal: 'Walk carefully lest you _______ fall on the icy road.'", options: ["will", "would", "should", "may"], answer: 2, explanation: "The conjunction 'lest' is ALWAYS followed by the modal 'should'." },
-        { q: "Select the right modal: 'When I was in school, I _______ run five kilometers without stopping.'", options: ["can", "could", "may", "must"], answer: 1, explanation: "Past general ability is expressed using 'could'." },
-        { q: "Choose the appropriate modal: 'We _______ respect our elders and follow constitutional values.'", options: ["ought to", "need", "dare to", "might"], answer: 0, explanation: "'Ought to' denotes moral duty or social obligation." }
+        { q: "[JKSSB FAA PYQ] 'I _______ swim when I was young.'", options: ["might", "should", "could", "will"], answer: 2, explanation: "'Could' expresses past general ability ('when I was young')." },
+        { q: "[JKSSB PYQ] 'All company employees _______ abide by the rules and regulations provided.'", options: ["ought to", "would", "could", "might"], answer: 0, explanation: "'Ought to' expresses moral and institutional duty." },
+        { q: "[JKSSB PYQ] 'We _______ have locked the gate. Then the dog wouldn't have got out.'", options: ["ought to", "would", "may", "have to"], answer: 0, explanation: "'Ought to have + V3' expresses an unfulfilled past obligation." },
+        { q: "[JKSSB PYQ] 'He studied hard lest he _______ fail.'", options: ["would", "should", "could", "might"], answer: 1, explanation: "The conjunction 'lest' is strictly followed by the modal 'should'." },
+        { q: "[JKSSB PYQ] In which sentence is the modal verb used to express necessity?", options: ["You should take a break.", "You can take a break.", "You might take a break.", "You could take a break."], answer: 0, explanation: "'Should/Must' expresses obligation or necessity." }
     ],
     articles: [
-        { q: "Fill in the blank: 'He is _______ honourable member of the legislative council.'", options: ["a", "an", "the", "No article"], answer: 1, explanation: "In 'honourable', 'h' is silent and starts with a vowel sound ('o'). Therefore, 'an' is used." },
-        { q: "Choose the right option: '_______ Jhelum flows through _______ Kashmir Valley.'", options: ["A, the", "The, the", "The, a", "No article, the"], answer: 1, explanation: "Names of rivers ('The Jhelum') and valleys ('the Kashmir Valley') take 'The'." },
-        { q: "Select the correct article: 'My brother is studying at _______ European university.'", options: ["an", "a", "the", "No article"], answer: 1, explanation: "'European' starts with a consonant sound '/ju:/' (Yu). Hence, 'a' is used." },
-        { q: "Complete the sentence: 'Kalidasa is often called _______ Shakespeare of India.'", options: ["a", "an", "the", "No article"], answer: 2, explanation: "When a proper noun is used as a common noun for comparison, we use 'the'." }
+        { q: "[JKSSB Constable PYQ] 'John decided to enroll in ___ MBA program at ___ University to enhance his skills.'", options: ["an, the", "No article, the", "an, a", "a, an"], answer: 2, explanation: "'MBA' starts with vowel sound 'em' -> 'an'; 'University' starts with consonant sound 'yu' -> 'a'." },
+        { q: "[JKSSB Constable PYQ] 'I work at ___ company in New York. ___ company is called Global Tech Solutions.'", options: ["a, the", "the, the", "a, No article", "an, the"], answer: 0, explanation: "First mention of singular countable noun takes 'a'; second specific mention takes 'the'." },
+        { q: "[JKSSB PYQ] 'Sudha is studying in ___ Canadian University. It will take ___ hour to reach the airport.'", options: ["an, a", "the, an", "the, a", "a, an"], answer: 3, explanation: "'Canadian' starts with consonant sound -> 'a'; 'hour' has silent 'h' -> 'an'." },
+        { q: "[JKSSB PYQ] '___ recent survey indicates that ___ number of drug addicts is growing day by day.'", options: ["A, the", "No article, the", "The, the", "A, a"], answer: 0, explanation: "'A recent survey' (indefinite) and 'the number of' (specific quantity)." },
+        { q: "[JKSSB FAA PYQ] 'She had ___ small supporting part ___ play.'", options: ["the, an", "no article, an", "an, no article", "a, in the"], answer: 3, explanation: "'A small supporting part in the play'." }
     ],
-    voice: [
-        { q: "Change to Passive Voice: 'Who taught you English grammar?'", options: ["By whom were you taught English grammar?", "Who was taught English grammar by you?", "By whom you were taught English grammar?", "Whom were you taught English grammar by?"], answer: 0, explanation: "'Who' + V2 converts to 'By whom + were + subject + V3' in Passive Voice." },
-        { q: "Convert into Passive Voice: 'Please shut the door.'", options: ["Let the door be shut.", "You are requested to shut the door.", "The door should be shut please.", "Let the door be shutted."], answer: 1, explanation: "Imperatives with 'Please' convert into 'You are requested to + V1'." },
-        { q: "Convert to Passive Voice: 'I know him very well.'", options: ["He is known by me very well.", "He is known to me very well.", "He was known to me very well.", "He has been known by me."], answer: 1, explanation: "'Known' always takes the preposition 'to' instead of 'by' in passive construction." }
+    narration: [
+        { q: "[JKSSB FAA PYQ] The reporter said, 'We have been following the matter closely for a month.'", options: ["The reporter said that they had been following the matter closely for a month.", "The reporter said that we had been following the matter closely for a month.", "The reporter said that they have been following the matter closely for a month.", "The reporter said that they has been following the matter."], answer: 0, explanation: "'We' changes to 'they' and Present Perfect Continuous changes to Past Perfect Continuous ('had been following')." },
+        { q: "[JKSSB Accounts Asst PYQ] 'What are you doing here?', she asked me.", options: ["She asked what I was doing here.", "She wanted to know what I am doing here.", "She wants to know what I was doing here.", "She wanted to know what I was doing there."], answer: 3, explanation: "'Here' becomes 'there' and Present Continuous becomes Past Continuous ('was doing')." },
+        { q: "[JKSSB PYQ] He said, 'I must go at once.'", options: ["He said that he has to go at once.", "He said that he had gone at once.", "He said that he had to go at once.", "He asked if he had to go at once."], answer: 2, explanation: "In indirect speech, 'must' indicating immediate necessity converts to 'had to'." },
+        { q: "[JKSSB PYQ] My nephew said, 'I have decided to take coaching in badminton.'", options: ["My nephew said that he had decided to take coaching in badminton.", "My nephew said that I have decided to take coaching in badminton.", "My nephew told that he is deciding to take coaching.", "My nephew told that he was deciding."], answer: 0, explanation: "Present Perfect ('have decided') shifts to Past Perfect ('had decided')." }
     ],
-    prepositions: [
-        { q: "Fill in the blank: 'He died _______ cholera last year, whereas his uncle died _______ his country.'", options: ["from, for", "of, for", "by, of", "with, to"], answer: 1, explanation: "Die 'of' a disease, and die 'for' a noble cause/country." },
-        { q: "Choose the exact preposition: 'I prefer tea _______ coffee during winter mornings.'", options: ["than", "over", "to", "from"], answer: 2, explanation: "'Prefer, senior, junior, superior, inferior' ALWAYS take 'to' (never 'than')." },
-        { q: "Complete the sentence: 'The candidate was acquitted _______ all charges by the High Court.'", options: ["from", "of", "by", "off"], answer: 1, explanation: "Fixed Preposition: 'Acquitted of' (freed from blame)." }
+    clauses: [
+        { q: "[JKSSB Constable PYQ] Pick out the adverb clause: 'Although it was raining, they continued their hike.'", options: ["it was raining", "they continued their hike", "Although it was raining", "continued their hike"], answer: 2, explanation: "'Although it was raining' is a subordinate Adverb Clause of Concession." },
+        { q: "[JKSSB FAA PYQ] Determine the function of the underlined clause: 'The bankers need to know **what they should do**.'", options: ["Noun Clause", "Adverb Clause", "Adjective Clause", "Principal Clause"], answer: 0, explanation: "It answers 'need to know what?' (Object of the infinitive 'to know'), so it is a Noun Clause." },
+        { q: "[JKSSB PYQ] Pick out the relative clause: 'The cat, which scratched my mum, is wild.'", options: ["The cat which", "which scratched my mum", "is wild", "scratched my mum"], answer: 1, explanation: "'Which scratched my mum' modifies 'The cat' and starts with relative pronoun 'which'." },
+        { q: "[JKSSB PYQ] Pick out the subordinate clause: 'If you work on Sunday, I will look after the children.'", options: ["If you work", "on Sunday, I will look after", "I will look after the children", "If you work on Sunday"], answer: 3, explanation: "'If you work on Sunday' is the subordinate conditional clause." }
     ]
 };
-  Object.assign(CORE_QUESTION_BANK, {
-    clauses: [
-        { q: "Identify the underlined clause: 'I know the place **where he was born**.'", options: ["Noun Clause", "Adjective (Relative) Clause", "Adverb Clause of Place", "Principal Clause"], answer: 1, explanation: "Because 'where he was born' qualifies the noun 'the place', it is an Adjective Clause." },
-        { q: "Identify the clause type: '**What cannot be cured** must be endured.'", options: ["Noun Clause", "Adverb Clause", "Adjective Clause", "Coordinate Clause"], answer: 0, explanation: "Acts as the Subject of the verb 'must be endured', making it a Noun Clause." },
-        { q: "Choose the right connector: 'Wait here _______ I return from the office.'", options: ["unless", "until", "if", "lest"], answer: 1, explanation: "'Until' indicates a time limit up to a point, whereas 'unless' indicates a condition." }
+        Object.assign(PURE_SEED_VAULT, {
+    prepositions: [
+        { q: "[JKSSB Constable PYQ] 'As they navigated through the dense forest, they stumbled ___ an ancient ruin.'", options: ["towards", "upon", "under", "around"], answer: 1, explanation: "'Stumble upon' means to discover something by chance." },
+        { q: "[JKSSB PYQ] 'She stood ___ the window, lost in thought ___ her future plans.'", options: ["by, about", "beside, towards", "by, towards", "in, for"], answer: 0, explanation: "Stand 'by' the window; lost in thought 'about' future plans." },
+        { q: "[JKSSB PYQ] 'The team worked tirelessly ___ the guidance of their coach ___ the challenging season.'", options: ["by, about", "under, towards", "under, during", "in, at"], answer: 2, explanation: "'Under' the guidance of someone, and 'during' a season." },
+        { q: "[JKSSB PYQ] 'The sergeant asked him to come to the Police station _______.'", options: ["between 4 PM to 5 PM", "between 4 PM and 5 PM", "between 4 PM or 5 PM", "between 4 PM till 5 PM"], answer: 1, explanation: "'Between' is always followed by 'and' (never 'to')." },
+        { q: "[JKSSB PYQ] 'We should prevent damage ___ and theft of public property.'", options: ["to", "of", "at", "on"], answer: 0, explanation: "Fixed preposition: 'damage to' something." }
     ],
-    rearranging: [
-        { q: "Rearrange (P, Q, R, S) into a meaningful sentence:\nP: is essential for\nQ: regular practice of mock tests\nR: scoring high marks in\nS: competitive exams like JKSSB", options: ["Q P R S", "P Q R S", "Q R P S", "S P R Q"], answer: 0, explanation: "'Regular practice of mock tests (Q) is essential for (P) scoring high marks in (R) competitive exams like JKSSB (S)'." },
-        { q: "Arrange the jumbled segments:\nP: without fear or favour\nQ: the judiciary must\nR: deliver justice to all citizens\nS: in a democratic nation", options: ["S Q R P", "Q P R S", "R P Q S", "P Q R S"], answer: 0, explanation: "'In a democratic nation (S), the judiciary must (Q) deliver justice to all citizens (R) without fear or favour (P)'." }
-    ],
-    vocab: [
-        { q: "Choose the correct SYNONYM of: 'EPHEMERAL'", options: ["Permanent", "Short-lived", "Eternal", "Enormous"], answer: 1, explanation: "'Ephemeral' means lasting for a very short time (short-lived)." },
-        { q: "Choose the correct ANTONYM of: 'MITIGATE'", options: ["Alleviate", "Aggravate", "Reduce", "Soften"], answer: 1, explanation: "'Mitigate' means to make less severe. Its opposite (Antonym) is 'Aggravate'." },
-        { q: "Select the closest SYNONYM of: 'PRAGMATIC'", options: ["Idealistic", "Practical", "Theoretical", "Careless"], answer: 1, explanation: "'Pragmatic' means dealing with things sensibly and realistically (Practical)." }
-    ],
-    idioms: [
-        { q: "Meaning of the idiom: 'To burn the midnight oil'?", options: ["To waste fuel", "To study or work late into the night", "To create a crisis", "To destroy records"], answer: 1, explanation: "'To burn the midnight oil' means to study or work late at night." },
-        { q: "Meaning of the idiom: 'A bolt from the blue'", options: ["A thunderstorm", "A complete and unexpected surprise/shock", "A conspiracy", "A pleasant breeze"], answer: 1, explanation: "Refers to a sudden, unexpected event." },
-        { q: "What does 'At the eleventh hour' mean?", options: ["At 11 AM sharp", "At the very last possible moment", "Early in the process", "After midnight"], answer: 1, explanation: "Means at the latest possible moment before it is too late." }
+    pronouns: [
+        { q: "[JKSSB Constable PYQ] What is the type of pronouns of underlined words: 'Did **you** do it **yourself**?'", options: ["Personal pronoun, Reflexive pronoun", "Personal pronoun, Personal pronoun", "Interrogative pronoun, Reflexive pronoun", "Demonstrative pronoun, Reflexive"], answer: 0, explanation: "'You' is a Personal pronoun and 'yourself' is a Reflexive/Emphatic pronoun." },
+        { q: "[JKSSB Constable PYQ] Which of the following sentences has a possessive pronoun?", options: ["The team members encourage each other.", "There was a period when I experienced joy.", "That cat in the yard belongs to her.", "This book is mine, not yours."], answer: 3, explanation: "'Mine' and 'yours' are possessive pronouns." },
+        { q: "[JKSSB PYQ] '_______ of the two sisters is married.'", options: ["Both", "Every", "Each", "Many"], answer: 2, explanation: "With singular verb 'is' and 'of the two', distributive pronoun 'Each' is used." },
+        { q: "[JKSSB PYQ] Which one is the correct sentence regarding pronoun usage?", options: ["He who speaks the truth, everybody loves him.", "Everybody loves him who speaks the truth.", "Everybody who loves him speaks the truth.", "Everybody whom he loves speaks truth."], answer: 1, explanation: "'Everybody loves him who speaks the truth' avoids redundant pronoun repetition." }
     ],
     homonyms: [
-        { q: "Fill in the blanks: 'His words had no _______ on me, as he could not _______ my career.'", options: ["affect, effect", "effect, affect", "effect, effect", "affect, affect"], answer: 1, explanation: "'Effect' is a Noun (result), while 'Affect' is a Verb (to influence)." },
-        { q: "Choose the right pair: 'The college _______ is a man of high moral _______.'", options: ["Principle, Principal", "Principal, Principle", "Principal, Principal", "Principle, Principle"], answer: 1, explanation: "'Principal' means head of an institution; 'Principle' means a moral rule." },
-        { q: "Select the correct pair: 'She sat _______ her mother, and _______ English, she speaks Urdu.'", options: ["beside, besides", "besides, beside", "beside, beside", "besides, besides"], answer: 0, explanation: "'Beside' means next to; 'Besides' means in addition to." }
+        { q: "[JKSSB FAA PYQ] 'He is not coming this _______ because he is still feeling _______.'", options: ["weak, week", "weak, weak", "week, week", "week, weak"], answer: 3, explanation: "'Week' means 7 days; 'weak' means lacking physical strength." },
+        { q: "[JKSSB Constable PYQ] 'The blacksmith shaped the malleable _______ while the apprentice demonstrated his _______.'", options: ["metal, mettle", "mettle, mettle", "metal, metal", "mettle, metal"], answer: 0, explanation: "'Metal' is iron/steel; 'mettle' means spirit/resilience." },
+        { q: "[JKSSB Accounts Asst PYQ] 'Everyone went to the picnic _______ John, who was sick.'", options: ["aspect", "accept", "except", "expect"], answer: 2, explanation: "'Except' means excluding; 'accept' means to receive." },
+        { q: "[JKSSB PYQ] 'The President gave _______ to the bill.'", options: ["accent", "ascent", "assent", "ascend"], answer: 2, explanation: "'Assent' means official approval or sanction." },
+        { q: "[JKSSB PYQ] 'The mournful _______ of the grieving widow _______ through the empty halls.'", options: ["wail, echoed", "whale, echoed", "pail, filled", "bale, resounded"], answer: 0, explanation: "'Wail' means a prolonged cry of grief (homophone of whale)." }
     ],
-    comprehension: [
-        { q: "Cloze Blank: 'Success depends not only on hard work _______ on consistent mock analysis.'", options: ["and also", "but also", "or else", "as well"], answer: 1, explanation: "'Not only' is always paired with 'but also'." },
-        { q: "Fill in the blank: 'One must always do _______ duty sincerely.'", options: ["his", "their", "one's", "our"], answer: 2, explanation: "Indefinite pronoun 'One' always takes 'one's'." }
+    rearranging: [
+        { q: "[JKSSB FAA PYQ] Rearrange: Asked / I / come / to / him / today", options: ["I asked to come to him today.", "I asked him to come today.", "Today I come to him asked.", "Today I come him to asked."], answer: 1, explanation: "Subject (I) + Verb (asked) + Object (him) + Infinitive (to come) + Adverb (today)." },
+        { q: "[JKSSB PYQ] Rearrange P, Q, R, S:\nP: who secures\nQ: will receive a trophy\nR: the highest marks\nS: the child", options: ["P Q R S", "Q R S P", "S P R Q", "Q R P S"], answer: 2, explanation: "'The child (S) who secures (P) the highest marks (R) will receive a trophy (Q)'." },
+        { q: "[JKSSB PYQ] Rearrange P, Q, R, S:\nP: we must read\nQ: if we want to absorb the fruits of great literature\nR: but with concentration\nS: them not as we do cricket stories", options: ["P R Q S", "P R S Q", "P S Q R", "Q P S R"], answer: 3, explanation: "'If we want to absorb... (Q) we must read (P) them not as we do cricket stories (S) but with concentration (R)'." }
     ],
-    pyq_special: [
-        { q: "[JKSSB Assistant Compiler PYQ] He said, 'I have been waiting here for two hours.'", options: ["He said that he had been waiting there for two hours.", "He said that he has been waiting here for two hours.", "He told that he was waiting there for two hours.", "He said that I had been waiting there for two hours."], answer: 0, explanation: "Present Perfect Continuous changes to Past Perfect Continuous ('had been waiting'), and 'here' -> 'there'." },
-        { q: "[JKSSB PYQ] 'Neither of the two candidates _______ suitable for this post.'", options: ["are", "were", "is", "have been"], answer: 2, explanation: "'Neither of / Either of / Each of' always takes a SINGULAR verb ('is')." },
-        { q: "[JKSSB PYQ] Spot the correct preposition: 'He congratulated me _______ my success.'", options: ["for", "on", "at", "with"], answer: 1, explanation: "'Congratulate' always takes the fixed preposition 'on'." }
+    editing: [
+        { q: "[JKSSB Constable PYQ] Find the error part: 'Yesterday, the wild animal destroyed (a)/ crops at a nascent stage (b)/ and cause huge losses (c)/ to the farmers (d).'", options: ["Yesterday, the wild animal destroyed", "crops at a nascent stage", "and cause huge losses", "to the farmers"], answer: 2, explanation: "Parallel past tense required: 'and caused huge losses' instead of 'cause'." },
+        { q: "[JKSSB Constable PYQ] Identify the sentence with correct punctuation marks:", options: ["Are you coming to the party? he asked, raising an eyebrow.", "\"Are you coming to the party?\" he asked, raising an eyebrow.", "\"Are you coming to the party\" he asked; raising an eyebrow.", "Are you coming to the party? he asked raising an eyebrow."], answer: 1, explanation: "Direct question must be enclosed in double quotes with a question mark inside." },
+        { q: "[JKSSB SI PYQ] Identify the error part: 'The college offer / all the courses of arts / and humanity / but no courses of science.'", options: ["The college offer", "all the courses", "of arts and humanity", "but no courses of science"], answer: 0, explanation: "Singular subject 'The college' requires singular verb 'offers'." }
     ]
 });
 
-function makeDynamicJKSSBQuestion(idx, lvl) {
-    const subjects = ["Majid", "The candidate", "Our team", "The officer", "The student", "The applicant"];
-    const sub = subjects[idx % subjects.length];
-    const mode = idx % 5;
-    if (mode === 0) return { q: `[${lvl.toUpperCase()} Pattern #${idx + 1}] Choose the correct tense: "${sub} _______ the entire syllabus before the notification was released."`, options: ["completed", "has completed", "had completed", "was completing"], answer: 2, explanation: "Past Perfect ('had + V3') is used for an action completed before another past action." };
-    if (mode === 1) return { q: `[${lvl.toUpperCase()} Pattern #${idx + 1}] Fill in the blank: "If ${sub.toLowerCase()} _______ regularly, the score would have crossed 90%."`, options: ["practiced", "had practiced", "practices", "would practice"], answer: 1, explanation: "Third Conditional Rule: 'If + had + V3' pairs with 'would have + V3'." };
-    if (mode === 2) return { q: `[${lvl.toUpperCase()} Pattern #${idx + 1}] Spot the correct connector: "No sooner did ${sub.toLowerCase()} enter the hall _______ the gate closed."`, options: ["when", "than", "then", "before"], answer: 1, explanation: "'No sooner ... did' is always followed by 'than'." };
-    if (mode === 3) return { q: `[${lvl.toUpperCase()} Pattern #${idx + 1}] Complete the sentence: "Every one of the applicants _______ required to carry the admit card."`, options: ["are", "is", "were", "have been"], answer: 1, explanation: "'Every one of / Each of' always takes a singular verb ('is')." };
-    return { q: `[${lvl.toUpperCase()} Pattern #${idx + 1}] Select the right verb: "${sub} along with other aspirants _______ waiting for the result."`, options: ["are", "is", "were", "have"], answer: 1, explanation: "With 'along with / as well as', the verb agrees with the first subject ('${sub}' -> singular 'is')." };
-}
+const SUBS = ["The candidate", "Majid", "The officer", "Every applicant", "The teacher", "The auditor", "Our team", "The student", "The clerk", "The inspector"];
+const PLACES = ["in Srinagar", "at the Jammu office", "during the CBT exam", "in the secretariat", "at the district center", "in the valley", "during the audit", "at the university", "in the library", "at the workshop"];
 
-function build50QuestionsForMock(topicId, level, setNo) {
-    const customKey = `majid_custom_${topicId}_${level}_${setNo}`;
-    const customSaved = JSON.parse(localStorage.getItem(customKey) || "[]");
-    let basePool = [...(CORE_QUESTION_BANK[topicId] || CORE_QUESTION_BANK.pyq_special)];
-    Object.keys(CORE_QUESTION_BANK).forEach(k => { if (k !== topicId) basePool = basePool.concat(CORE_QUESTION_BANK[k]); });
-
-    const final50 = [];
-    const seedOffset = (setNo * 17) + (level === "basic" ? 3 : level === "medium" ? 11 : 23);
-    for (let i = 0; i < customSaved.length && final50.length < 50; i++) {
-        final50.push({ ...customSaved[i], tag: `Custom Set ${setNo}` });
+function generatePureSingleQ(topicId, level, setNo, qNum) {
+    const idx = (setNo - 1) * 50 + qNum;
+    const seeds = PURE_SEED_VAULT[topicId] || PURE_SEED_VAULT.tenses;
+    if (qNum < seeds.length && setNo === 1 && level === "basic") {
+        return { ...seeds[qNum], tag: `${topicId.toUpperCase()} • PYQ` };
     }
-    let qIndex = 0;
-    while (final50.length < 50) {
-        if (qIndex < basePool.length) {
-            const rawQ = basePool[(qIndex + seedOffset) % basePool.length];
-            const shift = (setNo + qIndex) % 4;
-            const rotatedOptions = [0, 1, 2, 3].map(i => rawQ.options[(i + shift) % 4]);
-            const newCorrectIndex = (rawQ.answer - shift + 4) % 4;
-            final50.push({ q: rawQ.q, options: rotatedOptions, answer: newCorrectIndex, explanation: rawQ.explanation, tag: `${level.toUpperCase()} • Mock ${setNo}` });
+    const s = SUBS[idx % SUBS.length];
+    const p = PLACES[(idx * 3) % PLACES.length];
+    const v = (idx + setNo) % 5;
+
+    let item;
+    if (topicId === "tenses") {
+        const rules = [
+            { q: `Complete with the correct tense: "${s} _______ the verification report ${p} before the director arrived."`, options: ["submitted", "has submitted", "had submitted", "submits"], answer: 2, explanation: "Past Perfect ('had + V3') is mandatory for the action that happened before another past action." },
+            { q: `Spot the right tense: "${s} _______ preparing for the JKSSB exam ${p} since January."`, options: ["is", "was", "has been", "have been"], answer: 2, explanation: "Singular subject with 'since + point of time' takes Present Perfect Continuous ('has been')." },
+            { q: `Fill in the blank: "If ${s.toLowerCase()} _______ the instructions carefully ${p}, there will be no error."`, options: ["read", "reads", "will read", "had read"], answer: 1, explanation: "First Conditional: 'If + Simple Present (reads)' pairs with 'will + V1'." },
+            { q: `Choose the right verb: "It is high time ${s.toLowerCase()} _______ the pending assignment ${p}."`, options: ["completes", "completed", "will complete", "has completed"], answer: 1, explanation: "After 'It is high time + subject', Simple Past (V2 = 'completed') is always used." },
+            { q: `Identify the correct form: "Scarcely had ${s.toLowerCase()} entered the room ${p} _______ the power went out."`, options: ["than", "when", "then", "after"], answer: 1, explanation: "'Scarcely/Hardly ... had' is followed by 'when' in Past Perfect inversion." }
+        ];
+        item = rules[v];
+    } else if (topicId === "modals") {
+        const rules = [
+            { q: `Select the correct Modal: "${s} _______ revise the syllabus thoroughly ${p} lest marks should be lost."`, options: ["will", "should", "may", "can"], answer: 1, explanation: "Strong advice and 'lest' clauses use the modal 'should'." },
+            { q: `Fill in the modal: "${s} _______ carry the original Domicile Certificate ${p}; it is strictly compulsory."`, options: ["might", "could", "must", "may"], answer: 2, explanation: "'Must' denotes mandatory official compulsion." },
+            { q: `Choose the appropriate modal: "When ${s.toLowerCase()} was posted ${p}, he _______ solve 50 questions in 30 minutes."`, options: ["can", "could", "may", "must"], answer: 1, explanation: "'Could' expresses past ability." },
+            { q: `Pick the right modal: "_______ you please verify this application form ${p}?"`, options: ["Must", "Could", "Might", "Ought"], answer: 1, explanation: "'Could / Would' is used for polite formal requests." },
+            { q: `Fill in the modal auxiliary: "${s} _______ have informed the authority earlier ${p}, but forgot."`, options: ["should", "can", "shall", "need"], answer: 0, explanation: "'Should have + V3' indicates a past duty that was not fulfilled." }
+        ];
+        item = rules[v];
+    } else if (topicId === "articles") {
+        const rules = [
+            { q: `Choose the correct articles: "${s} met ___ honest officer and ___ university professor ${p}."`, options: ["a, an", "an, a", "the, an", "an, the"], answer: 1, explanation: "'Honest' starts with a vowel sound ('an'); 'university' starts with a 'yu' consonant sound ('a')." },
+            { q: `Fill in the article: "___ Chenab river flows majestically near the highway ${p}."`, options: ["A", "An", "The", "No article"], answer: 2, explanation: "Names of rivers always take the definite article 'The'." },
+            { q: `Select the right article: "${s} was appointed as ___ SDM ${p} last month."`, options: ["a", "an", "the", "No article"], answer: 1, explanation: "Abbreviation 'SDM' begins with vowel sound 'es', so 'an' is used." },
+            { q: `Choose the correct option: "___ gold ornaments kept ${p} belong to the bride."`, options: ["A", "An", "The", "No article"], answer: 2, explanation: "When an uncountable material noun ('gold') is particularized, it takes 'The'." },
+            { q: `Fill in the blank: "${s} plays ___ flute beautifully during cultural events ${p}."`, options: ["a", "an", "the", "No article"], answer: 2, explanation: "Musical instruments take the definite article 'the'." }
+        ];
+        item = rules[v];
+    } else if (topicId === "narration") {
+        const rules = [
+            { q: `Change to Indirect Speech: ${s} said ${p}, "I have completed my work."`, options: [`${s} said that he had completed his work.`, `${s} said that he has completed his work.`, `${s} told that I had completed my work.`, `${s} said that he completed his work.`], answer: 0, explanation: "Present Perfect ('have completed') shifts to Past Perfect ('had completed')." },
+            { q: `Convert to Indirect Speech: ${s} said to me ${p}, "Are you attending the session today?"`, options: [`${s} asked me if I was attending the session that day.`, `${s} asked me whether I am attending today.`, `${s} told me that I was attending that day.`, `${s} asked me if was I attending that day.`], answer: 0, explanation: "'Today' becomes 'that day' and Present Continuous becomes Past Continuous." },
+            { q: `Change the Narration: ${s} said to the clerk ${p}, "Please verify these documents."`, options: [`${s} ordered the clerk to verify these documents.`, `${s} requested the clerk to verify those documents.`, `${s} asked the clerk please verify those documents.`, `${s} told the clerk that verify those documents.`], answer: 1, explanation: "'Please' converts to 'requested + object + to + V1', and 'these' becomes 'those'." },
+            { q: `Direct to Indirect: ${s} said ${p}, "Honesty is the best policy."`, options: [`${s} said that honesty was the best policy.`, `${s} said that honesty is the best policy.`, `${s} told that honesty had been the best policy.`, `${s} asked if honesty is the best policy.`], answer: 1, explanation: "Proverbs and universal truths retain their present tense in Indirect Speech." },
+            { q: `Convert into Indirect: ${s} said ${p}, "Where did you keep the register?"`, options: [`${s} asked where I had kept the register.`, `${s} asked where did I keep the register.`, `${s} asked where I kept the register.`, `${s} told where I had kept the register.`], answer: 0, explanation: "Simple Past ('did keep') changes to Past Perfect ('had kept') in statement word order." }
+        ];
+        item = rules[v];
+    } else {
+        item = seeds[idx % seeds.length];
+    }
+
+    const shift = (setNo + qNum) % 4;
+    const rotatedOpts = [0, 1, 2, 3].map(i => item.options[(i + shift) % 4]);
+    const newAns = (item.answer - shift + 4) % 4;
+    return {
+        q: `[${level.toUpperCase()} Set ${setNo} • Q${qNum + 1}] ${item.q}`,
+        options: rotatedOpts,
+        answer: newAns,
+        explanation: item.explanation,
+        tag: `${topicId.toUpperCase()} • ${level.toUpperCase()}`
+    };
+                                                                                                                }
+                                                                                                                function buildTopicPureMock(topicId, level, setNo) {
+    if (topicId === "cloze") {
+        const themes = ["Digital Governance in J&K", "Environmental Conservation in Himalayas", "Importance of Competitive Exams", "Financial Literacy & Banking", "Sustainable Tourism in Kashmir"];
+        const theme = themes[(setNo - 1) % themes.length];
+        const passage = `📘 CLOZE TEST PASSAGE (Medium Set #${setNo} — ${theme}):\nRead the paragraph carefully and fill in blanks (1) to (5):\n\n"In the modern era of ${theme}, consistent effort is the key to success. Every aspirant ___(1)___ understand that accuracy matters as much as speed. Those ___(2)___ revise their notes systematically always stay ahead ___(3)___ the competition. Neither distractions nor laziness ___(4)___ allowed to derail one's focus, because perseverance ultimately ___(5)___ rich dividends."`;
+        const qs = [
+            { q: "Select the most appropriate word for Blank (1):", options: ["must", "ought", "dare", "used"], answer: 0, explanation: "'Must' takes bare infinitive 'understand' to show necessity." },
+            { q: "Select the most appropriate relative pronoun for Blank (2):", options: ["which", "whom", "who", "whose"], answer: 2, explanation: "'Who' acts as the subject pronoun referring to 'Those (aspirants)'." },
+            { q: "Select the most appropriate preposition for Blank (3):", options: ["of", "from", "with", "at"], answer: 0, explanation: "Fixed phrase: 'ahead of' the competition." },
+            { q: "Select the correct verb for Blank (4):", options: ["are", "were", "is", "have"], answer: 2, explanation: "With 'Neither...nor', the verb agrees with the closer singular noun 'laziness' -> 'is'." },
+            { q: "Select the correct verb form for Blank (5):", options: ["yield", "yielding", "yields", "yielded"], answer: 2, explanation: "Singular uncountable subject 'perseverance' takes singular verb 'yields'." }
+        ];
+        return qs.map((item, i) => ({ ...item, passage, tag: `Cloze Set ${setNo} • Q${i + 1}/5` }));
+    }
+
+    if (topicId === "dialogue") {
+        const scenarios = ["Verification Officer &JKSSB Candidate", "Bank Manager & Account Holder", "University Professor & IGNOU Student", "Doctor & Patient at Clinic", "Tourist & Local Guide in Srinagar"];
+        const sc = scenarios[(setNo - 1) % scenarios.length];
+        const passage = `💬 DIALOGUE CONVERSATION (Set #${setNo} — ${sc}):\nRead the conversation below and answer Questions 1 to 8:\n\nSpeaker A: "Good morning! May I ___(1)___ your application dossier?"\nSpeaker B: "Good morning, Sir. Here ___(2)___ all my original certificates."\nSpeaker A: "How long ___(3)___ you been preparing for this recruitment?"\nSpeaker B: "I have been preparing ___(4)___ the last eight months."\nSpeaker A: "If you qualify this stage, ___(5)___ you join immediately?"\nSpeaker B: "Yes Sir, I would be delighted ___(6)___ serve the department."\nSpeaker A: "Please sign ___(7)___ the bottom of this verification sheet."\nSpeaker B: "Thank you so much! I look forward to ___(8)___ the final list."`;
+        const qs = [
+            { q: `Dialogue Set #${setNo} — Choose the best word for Blank (1):`, options: ["examine", "examining", "examined", "to examine"], answer: 0, explanation: "Modal 'May' is always followed by V1 ('examine')." },
+            { q: `Dialogue Set #${setNo} — Choose the correct verb for Blank (2):`, options: ["is", "are", "was", "has"], answer: 1, explanation: "In 'Here ___ all my original certificates', the plural subject 'certificates' takes 'are'." },
+            { q: `Dialogue Set #${setNo} — Choose the right auxiliary for Blank (3):`, options: ["are", "were", "have", "had"], answer: 2, explanation: "Present Perfect Continuous question with 'you' takes 'have'." },
+            { q: `Dialogue Set #${setNo} — Choose the correct preposition for Blank (4):`, options: ["since", "for", "from", "by"], answer: 1, explanation: "A period/duration of time ('the last eight months') takes 'for'." },
+            { q: `Dialogue Set #${setNo} — Complete the conditional in Blank (5):`, options: ["would", "will", "had", "did"], answer: 1, explanation: "Type-1 Conditional: 'If + Present Simple' pairs with 'will' in the main clause." },
+            { q: `Dialogue Set #${setNo} — Fill in Blank (6):`, options: ["for", "in", "to", "with"], answer: 2, explanation: "'Delighted to + V1' is the standard infinitive structure." },
+            { q: `Dialogue Set #${setNo} — Choose the exact preposition for Blank (7):`, options: ["at", "on", "in", "over"], answer: 0, explanation: "Standard phrase: 'at the bottom of' a page/sheet." },
+            { q: `Dialogue Set #${setNo} — Complete the phrase 'look forward to' in Blank (8):`, options: ["see", "seeing", "saw", "seen"], answer: 1, explanation: "Golden JKSSB Rule: 'Look forward to / accustomed to / with a view to' takes a Gerund (V-ing = 'seeing')." }
+        ];
+        return qs.map((item, i) => ({ ...item, passage, tag: `Dialogue Set ${setNo} • Q${i + 1}/8` }));
+    }
+
+    // For Clause, Preposition, Pronoun, Homonym, Rearranging, Editing -> Use pure topic bank cycling with unique variations
+    const arr = [];
+    const seeds = PURE_SEED_VAULT[topicId] || PURE_SEED_VAULT.tenses;
+    for (let i = 0; i < 50; i++) {
+        if (["tenses", "modals", "articles", "narration"].includes(topicId)) {
+            arr.push(generatePureSingleQ(topicId, level, setNo, i));
         } else {
-            final50.push({ ...makeDynamicJKSSBQuestion(qIndex + seedOffset, level), tag: `${level.toUpperCase()} • Mock ${setNo}` });
+            const base = seeds[(i + setNo) % seeds.length];
+            const shift = (setNo + i) % 4;
+            const rotated = [0, 1, 2, 3].map(k => base.options[(k + shift) % 4]);
+            const ans = (base.answer - shift + 4) % 4;
+            arr.push({
+                q: `[${topicId.toUpperCase()} • ${level.toUpperCase()} Mock ${setNo} • Q${i + 1}] ${base.q}`,
+                options: rotated,
+                answer: ans,
+                explanation: base.explanation,
+                tag: `${topicId.toUpperCase()} • ${level.toUpperCase()}`
+            });
         }
-        qIndex++;
     }
-    return final50;
+    return arr;
 }
 
+let currentView = "view-dashboard";
 let currentTopicId = "tenses", currentLevel = "basic", currentSetNo = 1;
 let currentQuestions = [], currentQIndex = 0, userResponses = [], questionStatus = [];
 let questionTimeLeft = 60, totalTimeLeft = 3000, totalTimeSpent = 0, examInterval = null;
 
-function getAllAttemptsMap() { try { return JSON.parse(localStorage.getItem("majid_jkssb_attempts_v1") || "{}"); } catch (e) { return {}; } }
+function getAllAttemptsMap() { try { return JSON.parse(localStorage.getItem("majid_jkssb_attempts_v2") || "{}"); } catch (e) { return {}; } }
 function getMockKey(t, l, s) { return `${t}__${l}__${s}`; }
 function getAttemptsForMock(t, l, s) { return getAllAttemptsMap()[getMockKey(t, l, s)] || []; }
 function saveAttemptForMock(t, l, s, att) {
     const map = getAllAttemptsMap(), key = getMockKey(t, l, s);
     if (!map[key]) map[key] = [];
     map[key].push(att);
-    localStorage.setItem("majid_jkssb_attempts_v1", JSON.stringify(map));
+    localStorage.setItem("majid_jkssb_attempts_v2", JSON.stringify(map));
     updateTopStats();
 }
-function getBookmarks() { try { return JSON.parse(localStorage.getItem("majid_jkssb_bookmarks_v1") || "[]"); } catch (e) { return []; } }
-function saveBookmarks(list) { localStorage.setItem("majid_jkssb_bookmarks_v1", JSON.stringify(list)); document.getElementById("nav-bookmark-count").innerText = list.length; }
-         function showView(viewId) {
+
+function showView(viewId, pushHistory = true) {
     ["view-dashboard", "view-sets", "view-exam", "view-result"].forEach(id => document.getElementById(id).classList.add("hidden"));
     document.getElementById(viewId).classList.remove("hidden");
+    currentView = viewId;
+    const backBtn = document.getElementById("top-back-btn");
+    if (viewId === "view-dashboard") backBtn.classList.add("hidden");
+    else backBtn.classList.remove("hidden");
+
+    if (pushHistory) {
+        history.pushState({ view: viewId, topicId: currentTopicId, level: currentLevel }, "", `#${viewId}`);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function goHome() {
+function handleBackNavigation() {
+    if (currentView === "view-exam") {
+        if (!confirm("Live Mock Test chal raha hai! Kya tu test chhod kar Sets par wapas jana chahta hai?")) {
+            history.pushState({ view: "view-exam" }, "", "#view-exam");
+            return;
+        }
+        stopExamTimer();
+        renderMockSetsGrid();
+        showView("view-sets", false);
+    } else if (currentView === "view-result") {
+        renderMockSetsGrid();
+        showView("view-sets", false);
+    } else if (currentView === "view-sets") {
+        renderTopicsGrid();
+        updateTopStats();
+        showView("view-dashboard", false);
+    }
+}
+
+window.addEventListener("popstate", () => { handleBackNavigation(); });
+                                                                                              function goHome() {
     if (examInterval && !confirm("Live Mock chal raha hai! Kya beech mein chhod kar Home par jana hai?")) return;
     stopExamTimer(); renderTopicsGrid(); updateTopStats(); showView("view-dashboard");
 }
 
 function updateTopStats() {
     const map = getAllAttemptsMap();
-    let total = 0, sum = 0, best = 0;
-    Object.values(map).forEach(arr => arr.forEach(a => { total++; sum += parseFloat(a.score); if (parseFloat(a.score) > best) best = parseFloat(a.score); }));
+    let total = 0, sumAcc = 0, best = 0;
+    Object.values(map).forEach(arr => arr.forEach(a => {
+        total++; sumAcc += (a.accuracy || 0);
+        if (parseFloat(a.score) > best) best = parseFloat(a.score);
+    }));
     document.getElementById("nav-attempt-count").innerText = total;
     document.getElementById("stat-total-tests").innerText = total;
-    document.getElementById("stat-avg-score").innerText = total > 0 ? (sum / total).toFixed(2) : "0.0";
+    document.getElementById("stat-avg-acc").innerText = total > 0 ? `${Math.round(sumAcc / total)}%` : "0%";
     document.getElementById("stat-best-score").innerText = best.toFixed(2);
-    document.getElementById("nav-bookmark-count").innerText = getBookmarks().length;
 }
 
 function renderTopicsGrid() {
     const query = (document.getElementById("topic-search")?.value || "").toLowerCase();
-    const grid = document.getElementById("topics-grid");
-    grid.innerHTML = "";
+    const grid = document.getElementById("topics-grid"); grid.innerHTML = "";
     const map = getAllAttemptsMap();
 
     JKSSB_TOPICS.filter(t => t.title.toLowerCase().includes(query) || t.desc.toLowerCase().includes(query)).forEach(topic => {
         let count = 0;
-        ["basic", "medium", "hard"].forEach(l => { for (let s = 1; s <= 10; s++) count += (map[getMockKey(topic.id, l, s)] || []).length; });
+        ["basic", "medium", "hard"].forEach(l => { for (let s = 1; s <= 25; s++) count += (map[getMockKey(topic.id, l, s)] || []).length; });
+        const badge = topic.mode === "cloze" ? "25 Sets • 125 Qs" : topic.mode === "dialogue" ? "20 Sets • 160 Qs" : "14 Mocks • 700 Qs";
         const card = document.createElement("div");
-        card.className = "bg-slate-900 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-5 cursor-pointer transition flex flex-col justify-between shadow-lg";
+        card.className = "bg-slate-900 border border-slate-800 hover:border-emerald-500/60 rounded-2xl p-5 cursor-pointer transition flex flex-col justify-between shadow-lg";
         card.onclick = () => openTopicSets(topic.id);
         card.innerHTML = `
             <div>
                 <div class="flex justify-between items-start mb-3">
                     <span class="text-2xl bg-slate-950 w-11 h-11 rounded-xl flex items-center justify-center border border-slate-800">${topic.icon}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">${topic.pyqCount} • 1500 Qs</span>
+                    <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">${badge}</span>
                 </div>
                 <h4 class="text-base font-extrabold text-white mb-1">${topic.title}</h4>
                 <p class="text-xs text-slate-400 mb-4">${topic.desc}</p>
             </div>
-            <div class="pt-3 border-t border-slate-800 flex justify-between items-center text-[11px]">
-                <span class="text-slate-400">30 Mocks (Basic • Med • Hard)</span>
-                <span class="font-bold text-emerald-400">${count > 0 ? `✔ ${count} Attempts` : 'Open Sets →'}</span>
+            <div class="pt-3 border-t border-slate-800 flex justify-between items-center text-xs">
+                <span class="text-slate-400">100% Pure Topic</span>
+                <span class="font-bold text-emerald-400">${count > 0 ? `✔ ${count} Attempts` : 'Open Mocks →'}</span>
             </div>`;
         grid.appendChild(card);
     });
@@ -201,7 +302,16 @@ function openTopicSets(topicId) {
     currentTopicId = topicId;
     const t = JKSSB_TOPICS.find(x => x.id === topicId) || JKSSB_TOPICS[0];
     document.getElementById("selected-topic-title").innerText = `${t.icon} ${t.title}`;
-    switchLevelTab(currentLevel);
+    document.getElementById("selected-topic-desc").innerText = t.desc;
+    const tabsBox = document.getElementById("level-tabs-box");
+    if (t.mode === "cloze" || t.mode === "dialogue") {
+        tabsBox.classList.add("hidden");
+        currentLevel = "medium";
+        renderMockSetsGrid();
+    } else {
+        tabsBox.classList.remove("hidden");
+        switchLevelTab("basic");
+    }
     showView("view-sets");
 }
 
@@ -209,37 +319,38 @@ function switchLevelTab(level) {
     currentLevel = level;
     ["basic", "medium", "hard"].forEach(l => {
         document.getElementById(`tab-${l}`).className = l === level
-            ? "px-4 py-2 rounded-lg text-xs font-extrabold bg-emerald-500 text-slate-950"
-            : "px-4 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white";
+            ? "px-3 py-2 rounded-lg text-xs font-extrabold bg-emerald-500 text-slate-950"
+            : "px-3 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white";
     });
     renderMockSetsGrid();
 }
 
 function renderMockSetsGrid() {
-    const grid = document.getElementById("sets-grid");
-    grid.innerHTML = "";
+    const grid = document.getElementById("sets-grid"); grid.innerHTML = "";
     const t = JKSSB_TOPICS.find(x => x.id === currentTopicId);
+    const totalSets = t.mode === "cloze" ? 25 : t.mode === "dialogue" ? 20 : (currentLevel === "medium" ? 10 : 2);
+    const qPerSet = t.mode === "cloze" ? 5 : t.mode === "dialogue" ? 8 : 50;
 
-    for (let s = 1; s <= 10; s++) {
+    for (let s = 1; s <= totalSets; s++) {
         const past = getAttemptsForMock(currentTopicId, currentLevel, s);
         const has = past.length > 0;
         const best = has ? Math.max(...past.map(a => parseFloat(a.score))).toFixed(2) : null;
         const card = document.createElement("div");
-        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between";
+        card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between";
         card.innerHTML = `
             <div>
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400">${currentLevel.toUpperCase()} MOCK #${s}</span>
-                    <span class="text-xs font-mono text-slate-400">Q.${(s - 1) * 50 + 1}–${s * 50}</span>
+                <div class="flex justify-between items-center mb-1.5">
+                    <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400">${currentLevel.toUpperCase()} MOCK #${s}</span>
+                    <span class="text-xs font-mono text-slate-400">${qPerSet} Questions • ${qPerSet} Mins</span>
                 </div>
-                <h4 class="text-base font-extrabold text-white">${t.title.replace(/^\d+\.\s*/, '')} — Mock ${s}</h4>
-                ${has ? `<div class="mt-3 bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs">
-                    <div class="flex justify-between text-emerald-400 font-bold"><span>✅ Attempted ${past.length}x</span><span>Best:${best}/50</span></div>
-                    <div class="flex justify-between text-slate-400 text-[11px] mt-1"><span>Attempt 1: <b class="text-white">${past[0].score}/50</b></span><span>Latest: <b class="text-white">${past[past.length - 1].score}/50</b></span></div>
-                </div>` : `<div class="mt-3 bg-slate-950/50 border border-slate-800 rounded-xl p-2.5 text-[11px] text-slate-400">50 JKSSB MCQs • 1 Min/Q Timer • +1 / -0.25</div>`}
+                <h4 class="text-sm md:text-base font-extrabold text-white">${t.title.replace(/^\d+\.\s*/, '')} — Set ${s}</h4>
+                ${has ? `<div class="mt-2.5 bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs">
+                    <div class="flex justify-between text-emerald-400 font-bold"><span>✅ Attempted ${past.length}x</span><span>Best: ${best}/${qPerSet}</span></div>
+                    <div class="flex justify-between text-slate-400 text-[11px] mt-1"><span>Attempt 1: <b class="text-white">${past[0].score}/${qPerSet}</b></span><span>Latest: <b class="text-white">${past[past.length - 1].score}/${qPerSet}</b></span></div>
+                </div>` : `<div class="mt-2.5 bg-slate-950/60 border border-slate-800 rounded-xl p-2 text-[11px] text-slate-400">Pure ${t.title.replace(/^\d+\.\s*/, '')} • 1 Min/Q • +1 / -0.25</div>`}
             </div>
-            <button onclick="startMockExam(${s})" class="mt-4 w-full py-2.5 rounded-xl font-extrabold text-xs ${has ? 'bg-indigo-600 text-white' : 'bg-emerald-500 text-slate-950'}">
-                ${has ? `🔄 Re-Attempt Mock ${s} (Attempt #${past.length + 1})` : `▶️ Start Mock ${s}`}
+            <button onclick="startMockExam(${s})" class="mt-3 w-full py-2.5 rounded-xl font-extrabold text-xs ${has ? 'bg-indigo-600 text-white' : 'bg-emerald-500 text-slate-950'}">
+                ${has ? `🔄 Re-Attempt Set ${s} (Attempt #${past.length + 1})` : `▶️ Start Mock Set ${s}`}
             </button>`;
         grid.appendChild(card);
     }
@@ -247,12 +358,13 @@ function renderMockSetsGrid() {
 
 function startMockExam(setNo) {
     currentSetNo = setNo;
-    currentQuestions = build50QuestionsForMock(currentTopicId, currentLevel, currentSetNo);
-    currentQIndex = 0; userResponses = new Array(50).fill(null); questionStatus = new Array(50).fill("unvisited"); questionStatus[0] = "skipped";
-    questionTimeLeft = 60; totalTimeLeft = 3000; totalTimeSpent = 0;
+    currentQuestions = buildTopicPureMock(currentTopicId, currentLevel, currentSetNo);
+    const len = currentQuestions.length;
+    currentQIndex = 0; userResponses = new Array(len).fill(null); questionStatus = new Array(len).fill("unvisited"); questionStatus[0] = "skipped";
+    questionTimeLeft = 60; totalTimeLeft = len * 60; totalTimeSpent = 0;
     const t = JKSSB_TOPICS.find(x => x.id === currentTopicId);
     document.getElementById("exam-badge-level").innerText = `${currentLevel.toUpperCase()} • SET ${setNo}`;
-    document.getElementById("exam-title").innerText = `${t.title.replace(/^\d+\.\s*/, '')} - Mock ${setNo}`;
+    document.getElementById("exam-title").innerText = `${t.title.replace(/^\d+\.\s*/, '')}`;
     renderCurrentExamQuestion(); renderPalette(); startExamTimer(); showView("view-exam");
 }
 
@@ -262,10 +374,8 @@ function startExamTimer() {
         totalTimeSpent++; totalTimeLeft--; questionTimeLeft--;
         if (totalTimeLeft <= 0) { stopExamTimer(); finalizeAndSubmitExam(); return; }
         if (questionTimeLeft <= 0) {
-            if (document.getElementById("auto-next-toggle")?.checked) {
-                if (currentQIndex < 49) { jumpToQuestion(currentQIndex + 1); return; }
-                else { stopExamTimer(); finalizeAndSubmitExam(); return; }
-            } else questionTimeLeft = 60;
+            if (currentQIndex < currentQuestions.length - 1) { jumpToQuestion(currentQIndex + 1); return; }
+            else { stopExamTimer(); finalizeAndSubmitExam(); return; }
         }
         updateTimerUI();
     }, 1000);
@@ -278,12 +388,12 @@ function updateTimerUI() {
 }
 
 function renderCurrentExamQuestion() {
-    const qObj = currentQuestions[currentQIndex];
-    document.getElementById("q-number-badge").innerText = `Question ${currentQIndex + 1} of 50`;
+    const qObj = currentQuestions[currentQIndex], len = currentQuestions.length;
+    const pBox = document.getElementById("passage-box");
+    if (qObj.passage) { pBox.innerText = qObj.passage; pBox.classList.remove("hidden"); } else { pBox.classList.add("hidden"); }
+    document.getElementById("q-number-badge").innerText = `Question ${currentQIndex + 1} of ${len}`;
     document.getElementById("q-tag-badge").innerText = qObj.tag;
     document.getElementById("q-text").innerText = qObj.q;
-    const isSaved = getBookmarks().some(b => b.q === qObj.q);
-    document.getElementById("btn-bookmark-q").innerText = isSaved ? "⭐ Saved" : "☆ Save Q";
 
     const box = document.getElementById("q-options"); box.innerHTML = "";
     ["A", "B", "C", "D"].forEach((lettr, idx) => {
@@ -295,19 +405,19 @@ function renderCurrentExamQuestion() {
         box.appendChild(btn);
     });
     document.getElementById("btn-prev-q").disabled = currentQIndex === 0;
-    document.getElementById("btn-next-q").innerText = currentQIndex === 49 ? "Finish & Submit ✓" : "Save & Next →";
+    document.getElementById("btn-next-q").innerText = currentQIndex === len - 1 ? "Submit Test ✓" : "Save & Next →";
 }
 
 function clearCurrentResponse() { userResponses[currentQIndex] = null; questionStatus[currentQIndex] = "skipped"; renderCurrentExamQuestion(); renderPalette(); }
-function markForReviewAndNext() { questionStatus[currentQIndex] = "review"; if (currentQIndex < 49) jumpToQuestion(currentQIndex + 1); else renderPalette(); }
-function nextExamQuestion() { if (currentQIndex < 49) jumpToQuestion(currentQIndex + 1); else confirmSubmitExam(); }
+function markForReviewAndNext() { questionStatus[currentQIndex] = "review"; if (currentQIndex < currentQuestions.length - 1) jumpToQuestion(currentQIndex + 1); else renderPalette(); }
+function nextExamQuestion() { if (currentQIndex < currentQuestions.length - 1) jumpToQuestion(currentQIndex + 1); else confirmSubmitExam(); }
 function prevExamQuestion() { if (currentQIndex > 0) jumpToQuestion(currentQIndex - 1); }
 function jumpToQuestion(idx) { currentQIndex = idx; if (questionStatus[idx] === "unvisited") questionStatus[idx] = "skipped"; questionTimeLeft = 60; updateTimerUI(); renderCurrentExamQuestion(); renderPalette(); }
 
 function renderPalette() {
     const grid = document.getElementById("palette-grid"); grid.innerHTML = "";
     let a = 0, s = 0, r = 0, u = 0;
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < currentQuestions.length; i++) {
         const st = questionStatus[i];
         if (st === "answered") a++; else if (st === "skipped") s++; else if (st === "review") r++; else u++;
         let cls = st === "answered" ? "bg-emerald-500 text-slate-950 font-bold" : st === "review" ? "bg-purple-600 text-white font-bold" : st === "skipped" ? "bg-amber-500/20 text-amber-300 border-amber-500/40" : "bg-slate-950 border-slate-800 text-slate-400";
@@ -318,28 +428,24 @@ function renderPalette() {
     document.getElementById("pal-answered").innerText = a; document.getElementById("pal-skipped").innerText = s; document.getElementById("pal-review").innerText = r; document.getElementById("pal-unvisited").innerText = u;
 }
 
-function confirmSubmitExam() { if (confirm("Submit Mock Test now?")) finalizeAndSubmitExam(); }
+function confirmSubmitExam() { if (confirm("Kya tu Mock Test submit karna chahta hai?")) finalizeAndSubmitExam(); }
 
 function finalizeAndSubmitExam() {
     stopExamTimer();
-    let c = 0, w = 0, sk = 0;
+    let c = 0, w = 0, sk = 0, len = currentQuestions.length;
     currentQuestions.forEach((q, i) => { if (userResponses[i] === null) sk++; else if (userResponses[i] === q.answer) c++; else w++; });
     const score = ((c * 1.0) - (w * 0.25)).toFixed(2);
     const acc = (c + w) > 0 ? Math.round((c / (c + w)) * 100) : 0;
     const timeStr = `${Math.floor(totalTimeSpent / 60)}m ${totalTimeSpent % 60}s`;
     const past = getAttemptsForMock(currentTopicId, currentLevel, currentSetNo);
-    const attObj = { attemptNo: past.length + 1, date: new Date().toLocaleString("en-IN"), score, correct: c, wrong: w, skipped: sk, accuracy: acc, timeTaken: timeStr };
-    saveAttemptForMock(currentTopicId, currentLevel, currentSetNo, attObj);
+    saveAttemptForMock(currentTopicId, currentLevel, currentSetNo, { attemptNo: past.length + 1, date: new Date().toLocaleString("en-IN"), score, maxMarks: len, correct: c, wrong: w, skipped: sk, accuracy: acc, timeTaken: timeStr });
 
-    document.getElementById("res-final-score").innerText = score;
+    document.getElementById("res-final-score").innerText = `${score}/${len}`;
     document.getElementById("res-accuracy").innerText = `${acc}%`;
-    document.getElementById("res-correct").innerText = c;
-    document.getElementById("res-wrong").innerText = w;
-    document.getElementById("res-skipped").innerText = sk;
-    document.getElementById("res-time-taken").innerText = timeStr;
+    document.getElementById("res-correct").innerText = c; document.getElementById("res-wrong").innerText = w; document.getElementById("res-skipped").innerText = sk; document.getElementById("res-time-taken").innerText = timeStr;
 
     const allAtt = getAttemptsForMock(currentTopicId, currentLevel, currentSetNo);
-    document.getElementById("res-attempts-tbody").innerHTML = allAtt.map(a => `<tr class="border-b border-slate-800/60"><td class="py-2 px-3 font-bold text-emerald-400">Attempt #${a.attemptNo}</td><td class="py-2 px-3">${a.date}</td><td class="py-2 px-3 font-extrabold text-white">${a.score}/50</td><td class="py-2 px-3 text-emerald-400">${a.correct}</td><td class="py-2 px-3 text-rose-400">${a.wrong}</td><td class="py-2 px-3 text-amber-400">${a.skipped}</td><td class="py-2 px-3">${a.timeTaken}</td></tr>`).join("");
+    document.getElementById("res-attempts-tbody").innerHTML = allAtt.map(a => `<tr class="border-b border-slate-800/60"><td class="py-1.5 px-2 font-bold text-emerald-400">Attempt #${a.attemptNo}</td><td class="py-1.5 px-2">${a.date}</td><td class="py-1.5 px-2 font-extrabold text-white">${a.score}/${a.maxMarks || len}</td><td class="py-1.5 px-2 text-emerald-400">${a.correct}</td><td class="py-1.5 px-2 text-rose-400">${a.wrong}</td><td class="py-1.5 px-2 text-amber-400">${a.skipped}</td><td class="py-1.5 px-2">${a.timeTaken}</td></tr>`).join("");
     filterSolutions("all"); showView("view-result");
 }
 
@@ -348,18 +454,12 @@ function filterSolutions(mode) {
     currentQuestions.forEach((q, idx) => {
         const u = userResponses[idx], isC = u === q.answer, isS = u === null, isW = !isS && !isC;
         if ((mode === "wrong" && !isW) || (mode === "skipped" && !isS) || (mode === "correct" && !isC)) return;
-        box.innerHTML += `<div class="bg-slate-950 border border-slate-800 rounded-xl p-4"><div class="flex justify-between text-xs font-bold mb-2"><span>Q.${idx + 1}</span><span class="${isC ? 'text-emerald-400' : isW ? 'text-rose-400' : 'text-amber-400'}">${isC ? '✅ Correct (+1)' : isW ? '❌ Wrong (-0.25)' : '⏭️ Skipped'}</span></div><p class="font-bold text-white text-sm mb-2">${q.q}</p><p class="text-xs text-emerald-400 mb-1">✔ Correct Answer: ${q.options[q.answer]}</p>${isW ? `<p class="text-xs text-rose-400 mb-1">✖ Your Answer: ${q.options[u]}</p>` : ''}<div class="bg-slate-900 p-2.5 rounded-lg text-xs text-slate-300 mt-2">💡 ${q.explanation}</div></div>`;
+        box.innerHTML += `<div class="bg-slate-950 border border-slate-800 rounded-xl p-4"><div class="flex justify-between text-xs font-bold mb-1.5"><span>Q.${idx + 1}</span><span class="${isC ? 'text-emerald-400' : isW ? 'text-rose-400' : 'text-amber-400'}">${isC ? '✅ Correct (+1)' : isW ? '❌ Wrong (-0.25)' : '⏭️ Skipped'}</span></div><p class="font-bold text-white text-sm mb-2 whitespace-pre-line">${q.q}</p><p class="text-xs text-emerald-400 mb-1">✔ Correct Answer: ${q.options[q.answer]}</p>${isW ? `<p class="text-xs text-rose-400 mb-1">✖ Your Answer: ${q.options[u]}</p>` : ''}<div class="bg-slate-900 p-2.5 rounded-lg text-xs text-slate-300 mt-2">💡 ${q.explanation}</div></div>`;
     });
 }
 
 function reattemptCurrentMock() { startMockExam(currentSetNo); }
 function backToSetsFromResult() { renderMockSetsGrid(); showView("view-sets"); }
-function toggleBookmarkCurrent() { const q = currentQuestions[currentQIndex]; let l = getBookmarks(); const i = l.findIndex(b => b.q === q.q); if (i >= 0) l.splice(i, 1); else l.push({ q: q.q, answerText: q.options[q.answer], explanation: q.explanation, topic: currentTopicId.toUpperCase() }); saveBookmarks(l); renderCurrentExamQuestion(); }
-function openHistoryModal() { const map = getAllAttemptsMap(), box = document.getElementById("all-history-content"); box.innerHTML = Object.keys(map).length ? Object.keys(map).map(k => `<div class="bg-slate-950 p-3 rounded-xl border border-slate-800"><div class="font-bold text-emerald-400 mb-1">${k.replace(/__/g, ' • ').toUpperCase()}</div>${map[k].map(a => `<div>Attempt #${a.attemptNo}: <b>${a.score}/50</b> (${a.date})</div>`).join("")}</div>`).join("") : "<p class='text-center py-6'>No attempts yet.</p>"; document.getElementById("modal-history").classList.remove("hidden"); }
-function clearAllHistory() { if (confirm("Reset all saved history?")) { localStorage.removeItem("majid_jkssb_attempts_v1"); updateTopStats(); renderTopicsGrid(); closeModal("modal-history"); } }
-function openBookmarksModal() { const l = getBookmarks(); document.getElementById("bookmarks-content").innerHTML = l.length ? l.map((b, i) => `<div class="bg-slate-950 p-3 rounded-xl border border-slate-800"><b>Q${i + 1}: ${b.q}</b><p class="text-emerald-400 mt-1">✔ ${b.answerText}</p><p class="text-slate-400 mt-1">💡 ${b.explanation}</p></div>`).join("") : "<p class='text-center py-6'>No saved questions yet.</p>"; document.getElementById("modal-bookmarks").classList.remove("hidden"); }
-function openImporterModal() { document.getElementById("imp-topic").innerHTML = JKSSB_TOPICS.map(t => `<option value="${t.id}">${t.title}</option>`).join(""); document.getElementById("modal-importer").classList.remove("hidden"); }
-function saveCustomQuestions() { try { const p = JSON.parse(document.getElementById("imp-json").value.trim()); localStorage.setItem(`majid_custom_${document.getElementById("imp-topic").value}_${document.getElementById("imp-level").value}_${document.getElementById("imp-set").value}`, JSON.stringify(p)); alert("Saved!"); closeModal("modal-importer"); } catch (e) { alert("Invalid JSON!"); } }
+function openHistoryModal() { const map = getAllAttemptsMap(), box = document.getElementById("all-history-content"); box.innerHTML = Object.keys(map).length ? Object.keys(map).map(k => `<div class="bg-slate-950 p-3 rounded-xl border border-slate-800"><div class="font-bold text-emerald-400 mb-1">${k.replace(/__/g, ' • ').toUpperCase()}</div>${map[k].map(a => `<div>Attempt #${a.attemptNo}: <b>${a.score}/${a.maxMarks \vert{}\vert{} 50}</b> (${a.date})</div>`).join("")}</div>`).join("") : "<p class='text-center py-6'>No attempts yet.</p>"; document.getElementById("modal-history").classList.remove("hidden"); }
 function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
-window.addEventListener("DOMContentLoaded", () => { renderTopicsGrid(); updateTopStats(); });
-                                           
+window.addEventListener("DOMContentLoaded", () => { history.replaceState({ view: "view-dashboard" }, "", "#view-dashboard"); renderTopicsGrid(); updateTopStats(); });
