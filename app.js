@@ -48,7 +48,7 @@ const PURE_SEED_VAULT = {
         { q: "[JKSSB PYQ] Pick out the subordinate clause: 'If you work on Sunday, I will look after the children.'", options: ["If you work", "on Sunday, I will look after", "I will look after the children", "If you work on Sunday"], answer: 3, explanation: "'If you work on Sunday' is the subordinate conditional clause." }
     ]
 };
-        Object.assign(PURE_SEED_VAULT, {
+         Object.assign(PURE_SEED_VAULT, {
     prepositions: [
         { q: "[JKSSB Constable PYQ] 'As they navigated through the dense forest, they stumbled ___ an ancient ruin.'", options: ["towards", "upon", "under", "around"], answer: 1, explanation: "'Stumble upon' means to discover something by chance." },
         { q: "[JKSSB PYQ] 'She stood ___ the window, lost in thought ___ her future plans.'", options: ["by, about", "beside, towards", "by, towards", "in, for"], answer: 0, explanation: "Stand 'by' the window; lost in thought 'about' future plans." },
@@ -145,8 +145,8 @@ function generatePureSingleQ(topicId, level, setNo, qNum) {
         explanation: item.explanation,
         tag: `${topicId.toUpperCase()} • ${level.toUpperCase()}`
     };
-                                                                                                                }
-                                                                                                                function buildTopicPureMock(topicId, level, setNo) {
+                                                                                                               }
+                                                                                                                               function buildTopicPureMock(topicId, level, setNo) {
     if (topicId === "cloze") {
         const themes = ["Digital Governance in J&K", "Environmental Conservation in Himalayas", "Importance of Competitive Exams", "Financial Literacy & Banking", "Sustainable Tourism in Kashmir"];
         const theme = themes[(setNo - 1) % themes.length];
@@ -251,7 +251,7 @@ function handleBackNavigation() {
 }
 
 window.addEventListener("popstate", () => { handleBackNavigation(); });
-                                                                                              function goHome() {
+                                                                                          function goHome() {
     if (examInterval && !confirm("Live Mock chal raha hai! Kya beech mein chhod kar Home par jana hai?")) return;
     stopExamTimer(); renderTopicsGrid(); updateTopStats(); showView("view-dashboard");
 }
@@ -463,3 +463,4 @@ function backToSetsFromResult() { renderMockSetsGrid(); showView("view-sets"); }
 function openHistoryModal() { const map = getAllAttemptsMap(), box = document.getElementById("all-history-content"); box.innerHTML = Object.keys(map).length ? Object.keys(map).map(k => `<div class="bg-slate-950 p-3 rounded-xl border border-slate-800"><div class="font-bold text-emerald-400 mb-1">${k.replace(/__/g, ' • ').toUpperCase()}</div>${map[k].map(a => `<div>Attempt #${a.attemptNo}: <b>${a.score}/${a.maxMarks \vert{}\vert{} 50}</b> (${a.date})</div>`).join("")}</div>`).join("") : "<p class='text-center py-6'>No attempts yet.</p>"; document.getElementById("modal-history").classList.remove("hidden"); }
 function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
 window.addEventListener("DOMContentLoaded", () => { history.replaceState({ view: "view-dashboard" }, "", "#view-dashboard"); renderTopicsGrid(); updateTopStats(); });
+        
