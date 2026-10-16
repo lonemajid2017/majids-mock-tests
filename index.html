@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majid's Mock Tests | JKSSB Assistant Compiler Portal</title>
+    <title>Majid's Mock Tests | JKSSB Assistant Compiler</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -15,46 +15,53 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
 
-    <!-- TOP NAVBAR WITH SAFE BACK BUTTON -->
+    <!-- STICKY TOP NAVBAR WITH PROMINENT BACK BUTTON -->
     <header class="bg-slate-900/95 backdrop-blur border-b border-slate-800 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="goHome()">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center font-extrabold text-slate-950 text-xl shadow-lg">M</div>
-                <div>
-                    <h1 class="text-lg md:text-xl font-extrabold text-white flex items-center gap-2">
-                        Majid's Mock Tests
-                        <span class="text-[10px] font-bold uppercase bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">JKSSB English</span>
-                    </h1>
-                    <p class="text-xs text-slate-400">Assistant Compiler • Clean Syllabus Architecture</p>
+        <div class="max-w-7xl mx-auto px-3 py-3 flex justify-between items-center gap-2">
+            <div class="flex items-center gap-2.5">
+                <button id="top-back-btn" onclick="handleBackNavigation()" class="hidden px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-1 shadow-lg">
+                    ⬅ Back
+                </button>
+                <div class="flex items-center gap-2.5 cursor-pointer" onclick="goHome()">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center font-extrabold text-slate-950 text-lg">M</div>
+                    <div>
+                        <h1 class="text-base md:text-lg font-extrabold text-white leading-tight">Majid's Mock Tests</h1>
+                        <p class="text-[11px] text-slate-400">JKSSB Assistant Compiler • English CBT</p>
+                    </div>
                 </div>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="goHome()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-emerald-400 flex items-center gap-1">
-                    🏠 Home Dashboard
-                </button>
-                <button onclick="openHistoryModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                    📊 Attempts (<span id="nav-attempt-count">0</span>)
+                <button onclick="openHistoryModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200">
+                    📊 Saved Scores (<span id="nav-attempt-count" class="text-emerald-400 font-bold">0</span>)
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 md:px-4 py-5">
 
         <!-- VIEW 1: DASHBOARD -->
         <section id="view-dashboard">
             <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950/60 border border-slate-800 rounded-2xl p-5 mb-6 shadow-xl">
-                <span class="inline-block text-xs font-bold uppercase tracking-widest text-emerald-400 mb-1">🎯 JKSSB Assistant Compiler English Portal</span>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Clean Topic-Wise Practice Engine</h2>
-                <p class="text-slate-400 text-sm leading-relaxed max-w-3xl">
-                    Har topic ke alag aur pure questions (No Mixing!). <strong class="text-slate-200">700 Questions per Topic</strong> (Basic: 100 Qs / 2 Sets, Medium: 500 Qs / 10 Sets, Hard: 100 Qs / 2 Sets). Special <strong class="text-indigo-400">Cloze Tests</strong> aur <strong class="text-amber-400">Dialogue Practice Sets</strong> ke sath. Exact <strong class="text-emerald-400">+1.00 / -0.25 marking</strong> aur <strong class="text-amber-400">60s Timer</strong>.
-                </p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 items-center">
+                    <div class="lg:col-span-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">🎯 JKSSB Assistant Compiler Syllabus</span>
+                        <h2 class="text-xl md:text-2xl font-extrabold text-white mt-1 mb-2">100% Pure Topic-Wise Mock Portal</h2>
+                        <p class="text-slate-400 text-xs md:text-sm leading-relaxed">
+                            Grammar Topics: <strong class="text-white">700 Questions/Topic</strong> (Basic: 2 Sets × 50 Qs, Medium: 10 Sets × 50 Qs, Hard: 2 Sets × 50 Qs). Special <strong class="text-emerald-400">25 Cloze Test Sets</strong> (5 Qs each) & <strong class="text-amber-400">20 Dialogue Sets</strong> (8 Qs each).
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 text-center">
+                        <div><div class="text-lg font-extrabold text-emerald-400" id="stat-total-tests">0</div><div class="text-[10px] text-slate-400">Attempts</div></div>
+                        <div><div class="text-lg font-extrabold text-amber-400" id="stat-avg-score">0%</div><div class="text-[10px] text-slate-400">Avg Score</div></div>
+                        <div><div class="text-lg font-extrabold text-indigo-400" id="stat-best-score">0</div><div class="text-[10px] text-slate-400">Best Marks</div></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
-                <h3 class="text-lg font-bold text-white">📚 Approved Syllabus Topics (No Synonyms/Antonyms/Idioms)</h3>
-                <input type="text" id="topic-search" oninput="renderTopicsGrid()" placeholder="🔍 Search topic (e.g. Tenses, Dialogue, Cloze)..." class="w-full sm:w-72 bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                <h3 class="text-base md:text-lg font-bold text-white">📚 Select English Topic (No Vocab/Idioms Clutter)</h3>
+                <input type="text" id="topic-search" oninput="renderTopicsGrid()" placeholder="🔍 Search topic..." class="w-full sm:w-64 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
             </div>
 
             <div id="topics-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -62,137 +69,132 @@
 
         <!-- VIEW 2: SETS SELECTION -->
         <section id="view-sets" class="hidden">
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-5 flex flex-wrap items-center justify-between gap-4">
                 <div>
-                    <button onclick="goHome()" class="text-xs font-semibold text-emerald-400 hover:underline flex items-center gap-1 mb-1">
-                        ← Back to All Topics Dashboard
+                    <button onclick="handleBackNavigation()" class="mb-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-emerald-400 text-xs font-bold inline-flex items-center gap-1 border border-slate-700">
+                        ⬅ Back to All Topics
                     </button>
-                    <h2 id="selected-topic-title" class="text-2xl font-extrabold text-white">Topic Name</h2>
-                    <p id="selected-topic-desc" class="text-xs text-slate-400 mt-0.5">Select difficulty and mock set to begin</p>
+                    <h2 id="selected-topic-title" class="text-xl md:text-2xl font-extrabold text-white">Topic</h2>
+                    <p id="selected-topic-desc" class="text-xs text-slate-400 mt-0.5"></p>
                 </div>
-                <div id="level-tabs-container" class="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
-                    <button onclick="switchLevelTab('basic')" id="tab-basic" class="px-3.5 py-2 rounded-lg text-xs font-bold">🟢 Basic (100 Qs - 2 Sets)</button>
-                    <button onclick="switchLevelTab('medium')" id="tab-medium" class="px-3.5 py-2 rounded-lg text-xs font-bold">🟡 Medium (500 Qs - 10 Sets)</button>
-                    <button onclick="switchLevelTab('hard')" id="tab-hard" class="px-3.5 py-2 rounded-lg text-xs font-bold">🔴 Hard (100 Qs - 2 Sets)</button>
+                <div id="level-tabs-box" class="flex flex-wrap bg-slate-950 p-1.5 rounded-xl border border-slate-800 gap-1">
+                    <button onclick="switchLevelTab('basic')" id="tab-basic" class="px-3 py-2 rounded-lg text-xs font-bold">🟢 Basic (2 Sets • 100 Qs)</button>
+                    <button onclick="switchLevelTab('medium')" id="tab-medium" class="px-3 py-2 rounded-lg text-xs font-bold">🟡 Medium (10 Sets • 500 Qs)</button>
+                    <button onclick="switchLevelTab('hard')" id="tab-hard" class="px-3 py-2 rounded-lg text-xs font-bold">🔴 Hard (2 Sets • 100 Qs)</button>
                 </div>
             </div>
-
             <div id="sets-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
-
-        <!-- VIEW 3: EXAM INTERFACE -->
+                <!-- VIEW 3: LIVE CBT EXAM -->
         <section id="view-exam" class="hidden">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-4 flex flex-wrap justify-between items-center gap-3 shadow-lg">
-                <div class="flex items-center gap-3">
-                    <button onclick="goHome()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-emerald-400 border border-slate-700">
-                        🏠 Home
-                    </button>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span id="exam-badge-level" class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">BASIC</span>
-                            <h3 id="exam-title" class="text-sm md:text-base font-bold text-white">Mock Test</h3>
-                        </div>
-                        <p class="text-[11px] text-slate-400">+1.00 Correct | -0.25 Wrong</p>
-                    </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 mb-3 flex flex-wrap justify-between items-center gap-2 shadow-lg">
+                <div>
+                    <span id="exam-badge-level" class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">SET</span>
+                    <h3 id="exam-title" class="text-sm md:text-base font-bold text-white inline ml-1">Mock</h3>
+                    <p class="text-[11px] text-slate-400 mt-0.5">JKSSB Marking: <span class="text-emerald-400 font-bold">+1.00</span> | Negative: <span class="text-rose-400 font-bold">-0.25</span> | 1 Min/Q Timer</p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div class="bg-slate-950 border border-amber-500/40 px-3.5 py-1.5 rounded-xl text-center">
-                        <div class="text-[10px] uppercase text-slate-400">Q Timer (1 Min)</div>
-                        <div id="question-timer-display" class="text-base font-mono font-extrabold text-amber-400">01:00</div>
+                <div class="flex items-center gap-2">
+                    <div class="bg-slate-950 border border-amber-500/40 px-3 py-1 rounded-xl text-center">
+                        <div class="text-[9px] uppercase text-slate-400">Q Timer</div>
+                        <div id="question-timer-display" class="text-sm md:text-base font-mono font-extrabold text-amber-400">01:00</div>
                     </div>
-                    <button onclick="confirmSubmitExam()" class="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs">Submit Test ✓</button>
+                    <div class="bg-slate-950 border border-slate-800 px-3 py-1 rounded-xl text-center">
+                        <div class="text-[9px] uppercase text-slate-400">Total Left</div>
+                        <div id="total-timer-display" class="text-sm md:text-base font-mono font-bold text-slate-200">50:00</div>
+                    </div>
+                    <button onclick="confirmSubmitExam()" class="px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow">Submit ✓</button>
                 </div>
             </div>
 
-            <div class="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden mb-5">
+            <div class="w-full bg-slate-900 h-1.5 rounded-full overflow-hidden mb-4">
                 <div id="question-timer-bar" class="bg-gradient-to-r from-emerald-400 to-amber-400 h-full transition-all duration-1000" style="width: 100%"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col justify-between">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-center pb-4 mb-5 border-b border-slate-800">
+                        <div class="flex justify-between items-center pb-3 mb-4 border-b border-slate-800">
                             <span id="q-number-badge" class="text-xs font-extrabold uppercase bg-slate-800 text-emerald-400 px-3 py-1 rounded-lg">Question 1</span>
-                            <span id="q-tag-badge" class="text-[11px] bg-slate-950 text-slate-400 px-2.5 py-1 rounded border border-slate-800">JKSSB Pure Topic</span>
+                            <span id="q-tag-badge" class="text-[11px] bg-slate-950 text-slate-400 px-2.5 py-1 rounded border border-slate-800">JKSSB Pattern</span>
                         </div>
-                        <div id="q-text" class="text-base md:text-lg font-semibold text-white leading-relaxed mb-6">Loading question...</div>
-                        <div id="q-options" class="space-y-3"></div>
+                        <!-- Passage / Dialogue Box (Shown automatically for Cloze & Dialogue sets) -->
+                        <div id="q-context-box" class="hidden mb-4 p-4 rounded-xl bg-slate-950 border border-indigo-500/40 text-xs md:text-sm text-slate-200 leading-relaxed whitespace-pre-line"></div>
+                        <div id="q-text" class="text-sm md:text-base font-semibold text-white leading-relaxed mb-5 whitespace-pre-line">Loading...</div>
+                        <div id="q-options" class="space-y-2.5"></div>
                     </div>
 
-                    <div class="flex flex-wrap items-center justify-between gap-3 pt-6 mt-8 border-t border-slate-800">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-5 mt-6 border-t border-slate-800">
                         <div class="flex items-center gap-2">
-                            <button onclick="prevExamQuestion()" id="btn-prev-q" class="px-4 py-2.5 rounded-xl bg-slate-800 text-xs font-semibold text-slate-200 disabled:opacity-40">← Prev</button>
-                            <button onclick="clearCurrentResponse()" class="px-3.5 py-2.5 rounded-xl bg-slate-800/70 text-xs text-slate-400">Clear</button>
+                            <button onclick="prevExamQuestion()" id="btn-prev-q" class="px-3.5 py-2 rounded-xl bg-slate-800 text-xs font-semibold text-slate-200 disabled:opacity-40">← Prev</button>
+                            <button onclick="clearCurrentResponse()" class="px-3 py-2 rounded-xl bg-slate-800/70 text-xs text-slate-400">Clear</button>
                         </div>
-                        <button onclick="nextExamQuestion()" id="btn-next-q" class="px-6 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-extrabold text-xs">Save & Next →</button>
+                        <button onclick="nextExamQuestion()" id="btn-next-q" class="px-5 py-2 rounded-xl bg-emerald-500 text-slate-950 font-extrabold text-xs">Save & Next →</button>
                     </div>
                 </div>
 
-                <div class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col">
-                    <h4 class="text-sm font-bold text-white mb-3">🧭 Question Palette</h4>
-                    <div id="palette-grid" class="grid grid-cols-5 gap-2 max-h-80 overflow-y-auto custom-scroll pr-1"></div>
+                <div class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col">
+                    <h4 class="text-xs font-bold text-white mb-2">🧭 Question Palette (<span id="pal-total-label">50</span> Qs)</h4>
+                    <div class="grid grid-cols-3 gap-1.5 text-[10px] text-slate-400 mb-3 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                        <div>🟢 Ans: <b id="pal-answered" class="text-white">0</b></div>
+                        <div>🟡 Skip: <b id="pal-skipped" class="text-white">0</b></div>
+                        <div>⚪ Left: <b id="pal-unvisited" class="text-white">0</b></div>
+                    </div>
+                    <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-1.5 max-h-72 overflow-y-auto custom-scroll pr-1"></div>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 4: RESULT -->
+        <!-- VIEW 4: RESULT & ATTEMPT COMPARISON -->
         <section id="view-result" class="hidden">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-6 shadow-xl">
-                <div class="flex flex-wrap justify-between items-start gap-4 mb-6 pb-4 border-b border-slate-800">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 mb-5 shadow-xl">
+                <div class="flex flex-wrap justify-between items-start gap-3 mb-5 pb-4 border-b border-slate-800">
                     <div>
-                        <span class="text-xs font-bold uppercase text-emerald-400">🎉 Mock Result & Performance Report</span>
-                        <h2 id="res-test-title" class="text-2xl font-extrabold text-white mt-1">Result</h2>
-                        <p id="res-attempt-subtitle" class="text-xs text-slate-400 mt-0.5">Attempt history saved permanently</p>
+                        <span class="text-xs font-bold uppercase text-emerald-400">🎉 JKSSB Mock Result</span>
+                        <h2 id="res-test-title" class="text-xl font-extrabold text-white mt-0.5">Result</h2>
+                        <p id="res-attempt-subtitle" class="text-xs text-slate-400"></p>
                     </div>
-                    <div class="flex gap-2.5">
-                        <button onclick="reattemptCurrentMock()" class="px-4 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-extrabold text-xs">🔄 Re-Attempt</button>
-                        <button onclick="backToSetsFromResult()" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-200 font-semibold text-xs border border-slate-700">📚 Back to Sets</button>
+                    <div class="flex gap-2">
+                        <button onclick="reattemptCurrentMock()" class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-extrabold text-xs">🔄 Re-Attempt</button>
+                        <button onclick="backToSetsFromResult()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 font-semibold text-xs border border-slate-700">⬅ Back to Sets</button>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6 text-center">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-emerald-500/40"><div class="text-2xl font-extrabold text-emerald-400" id="res-final-score">0.00</div><div class="text-[11px] text-slate-400">Net Score</div></div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800"><div class="text-2xl font-extrabold text-white" id="res-accuracy">0%</div><div class="text-[11px] text-slate-400">Accuracy</div></div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800"><div class="text-2xl font-extrabold text-emerald-400" id="res-correct">0</div><div class="text-[11px] text-slate-400">Correct (+1)</div></div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800"><div class="text-2xl font-extrabold text-rose-400" id="res-wrong">0</div><div class="text-[11px] text-slate-400">Wrong (-0.25)</div></div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800"><div class="text-2xl font-extrabold text-amber-400" id="res-skipped">0</div><div class="text-[11px] text-slate-400">Skipped</div></div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800"><div class="text-xl font-extrabold text-indigo-400" id="res-time-taken">00:00</div><div class="text-[11px] text-slate-400">Time</div></div>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-5 text-center">
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-emerald-500/40"><div class="text-xl font-extrabold text-emerald-400" id="res-final-score">0</div><div class="text-[10px] text-slate-400">Net Marks</div></div>
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800"><div class="text-xl font-extrabold text-white" id="res-accuracy">0%</div><div class="text-[10px] text-slate-400">Accuracy</div></div>
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800"><div class="text-xl font-extrabold text-emerald-400" id="res-correct">0</div><div class="text-[10px] text-slate-400">Correct (+1)</div></div>
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800"><div class="text-xl font-extrabold text-rose-400" id="res-wrong">0</div><div class="text-[10px] text-slate-400">Wrong (-0.25)</div></div>
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800"><div class="text-xl font-extrabold text-amber-400" id="res-skipped">0</div><div class="text-[10px] text-slate-400">Skipped (0)</div></div>
                 </div>
 
-                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
-                    <h3 class="text-sm font-bold text-white mb-2">📈 Attempt History for This Mock</h3>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5">
+                    <h3 class="text-xs font-bold text-white mb-2">📈 Your Saved Attempts for This Set (Attempt 1 vs Current):</h3>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse text-xs">
-                            <thead>
-                                <tr class="border-b border-slate-800 text-slate-400 uppercase">
-                                    <th class="py-2 px-3">Attempt #</th><th class="py-2 px-3">Date</th><th class="py-2 px-3">Marks</th><th class="py-2 px-3">Correct</th><th class="py-2 px-3">Wrong</th><th class="py-2 px-3">Skipped</th><th class="py-2 px-3">Time</th>
-                                </tr>
-                            </thead>
+                            <thead><tr class="border-b border-slate-800 text-slate-400"><th class="py-1.5 px-2">Attempt</th><th class="py-1.5 px-2">Date</th><th class="py-1.5 px-2">Marks</th><th class="py-1.5 px-2">Correct</th><th class="py-1.5 px-2">Wrong</th><th class="py-1.5 px-2">Time</th></tr></thead>
                             <tbody id="res-attempts-tbody" class="divide-y divide-slate-800/60"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                <h3 class="text-lg font-bold text-white mb-4">📘 Detailed Solutions & Explanations</h3>
-                <div id="solutions-container" class="space-y-4"></div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+                <h3 class="text-base font-bold text-white mb-4">📘 Detailed Question-by-Question Explanations</h3>
+                <div id="solutions-container" class="space-y-3"></div>
             </div>
         </section>
     </main>
 
-    <!-- MODAL ATTEMPTS -->
     <div id="modal-history" class="hidden fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[80vh] flex flex-col">
             <div class="p-4 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-bold text-white text-base">📊 All Saved Mock Attempts</h3>
+                <h3 class="font-bold text-white text-sm">📊 All Saved Mock Attempts</h3>
                 <button onclick="closeModal('modal-history')" class="text-slate-400 text-lg font-bold px-2">✕</button>
             </div>
-            <div id="all-history-content" class="p-4 overflow-y-auto custom-scroll space-y-3 text-xs"></div>
+            <div id="all-history-content" class="p-4 overflow-y-auto custom-scroll space-y-2.5 text-xs"></div>
         </div>
     </div>
 
     <script src="app.js"></script>
 </body>
-</html>                                                                                                                                                                                  </html>
-                
+</html>
